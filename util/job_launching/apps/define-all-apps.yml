@@ -809,3 +809,10 @@ pytorch_examples:
       # - inference_vae:
       #     - args:
       #       accel-sim-mem: 10G
+
+cublaslt:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: ""
+    execs:
+        - cublaslt_gemm:
+            - args: -b 1 -m 128 -n 2560 -k 2560 -w 0 -i 1 -t fp16
