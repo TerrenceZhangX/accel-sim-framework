@@ -819,6 +819,13 @@ cublaslt:
         - cublaslt_gemm:
             - args: -b 1 -m 2048 -n 1280 -k 4096 -w 0 -i 1 -t fp16 # Compute-bound. 87T/125T achieved.
 
+cutlass_volta:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: ""
+    execs:
+        - 07_volta_tensorop_gemm:
+            - args:
+
 ubench_selection:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
     data_dirs: ""
