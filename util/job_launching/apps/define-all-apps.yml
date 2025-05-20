@@ -822,9 +822,38 @@ cublaslt:
 cutlass_volta:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
     data_dirs: ""
-    execs:
+    execs: # M,N,K - Decode sizes with small M. Prefill sizes with larger M. Shapes in DS-R1 inference. Total 5x3=15 data points
         - 07_volta_tensorop_gemm:
-            - args:
+            - args: 16 1536 7168
+        - 07_volta_tensorop_gemm:
+            - args: 16 576 7168
+        - 07_volta_tensorop_gemm:
+            - args: 16 2048 7168
+        - 07_volta_tensorop_gemm:
+            - args: 16 2304 7168
+        - 07_volta_tensorop_gemm:
+            - args: 16 16160 7168
+        - 07_volta_tensorop_gemm:
+            - args: 128 1536 7168
+        - 07_volta_tensorop_gemm:
+            - args: 128 576 7168
+        - 07_volta_tensorop_gemm:
+            - args: 128 2048 7168
+        - 07_volta_tensorop_gemm:
+            - args: 128 2304 7168
+        - 07_volta_tensorop_gemm:
+            - args: 128 16160 7168
+        - 07_volta_tensorop_gemm:
+            - args: 256 1536 7168
+        - 07_volta_tensorop_gemm:
+            - args: 256 576 7168
+        - 07_volta_tensorop_gemm:
+            - args: 256 2048 7168
+        - 07_volta_tensorop_gemm:
+            - args: 256 2304 7168
+        - 07_volta_tensorop_gemm:
+            - args: 256 16160 7168
+        
 
 ubench_selection:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
