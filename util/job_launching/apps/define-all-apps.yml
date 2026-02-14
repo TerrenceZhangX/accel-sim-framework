@@ -835,3 +835,15 @@ ubench_selection:
             - args:
         - mem_bw:
             - args:
+
+# DSE-bench: LLM inference micro-benchmarks (LLaMA-7B style shapes)
+# See gpu-app-collection/src/cuda/dse-bench/README.md for details
+dse_bench_gemm:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: ""
+    execs:
+        - gemm_volta:
+            - args: 8 4096 4096        # Latency-bound: decode QKV bs=1, AI=8
+            - args: 32 11008 4096      # BW-bound: decode FFN_down bs=32, AI=31
+            - args: 128 4096 4096      # Ridge (mem->comp): decode QKV bs=128, AI=117
+            - args: 4096 11008 4096    # Compute-bound: prefill FFN_down s=4096, AI=1215
